@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #333;
+  color: black;
+  font-size: 1.1em;
+  line-height: 1.5;
+  text-align: center;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 1em 0;
+}
+
+p {
+  margin: 0;
+  padding: 1em 0;
+}
+
+.btn {
+  display: inline-block;
+  background: #333;
+  color: #fff;
+  text-decoration: none;
+  padding: 1em 2em;
+  border: 1px solid #666;
+  margin: 0.5em 0;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 80px minmax(calc(100vh - 200px), auto) 120px;
+  overflow: hidden;
+  background: white;
+}
+
+.main-header{
+  grid-row: 1;
+  grid-column: 1 / -1;
+}
+
+.main-nav{
+  grid-row: 2;
+  grid-column: 1;
+  z-index: 200; 
+  transform: translateX(-100%);
+  transition: transform .2s linear; 
+  will-change: transform; 
+  background: #000;
+
+}
+
+.main-nav.is-active{
+  transform: translateX(0);
+}
+
+.main-content{
+  grid-row: 2; 
+  grid-column: 1 / -1;
+  padding: 50px;
+  justify-content: center;
+}
+
+.main-footer{
+  grid-row: 3;
+  grid-column: 1 / -1;
+}
+
+
+
+
+.main-header{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  background: #fafafa;
+}
+
+.main-header h1{
+  margin: 0 20px;
+}
+
+.main-header .btn{
+  font-size: 18px;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 5px 10px;
+  margin: 0 10px;
+  background: #000;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.main-nav ul{
+  margin: 0;
+  padding: 100% 0px;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  list-style: none;
+}
+
+.main-nav li{
+  color: white;
+  text-decoration: none;
+  list-style: none;
+  padding: 1rem;
+}
+
+.main-footer{  
+  padding: 1rem;
+  background: #333;
+  color: #fafafa;
+}
+@media only screen and (min-width: 600px){
+.grid{
+    grid-template-columns: 240px repeat(4, 1fr); 
+  }
+}
+
+@media only screen and (min-width: 992px){
+  .main-content{
+    grid-column: 2 / -1;
+  }
+  
+  .main-nav{
+    transform: translateX(0);
+  }
+}
+</style>
+<body>
+	<main class="grid">
+  <header class="main-header">
+    <button class="js-navigation btn" aria-haspopup="true" aria-owns="main-nav" aria-expanded="false">
+  Menu
+  </button>
+  </header>
+  <nav class="main-nav js-nav" id="main-nav" aria-hidden="true">
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="skills.html">SKILLS</a></li>
+      <li><a href="portfolio.html">PORTFOLIO</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+  </nav>
+  <div class="main-content">
+    <h1>LUCAS MOHALE</h1>
+    <p>Sofrware Developer and Photographer</p>
+    <img src="profile.jpeg">
+    <button type="button" class="btn">Download Resume</button>
+  </div>
+  <footer class="main-footer">
+    
+  <div>Project By <a href="#" target="_blank">Lucas George</a></div>
+  </footer>
+</main>
+</body>
+</html>
+
+
+
+<script>
+	var navTrigger = document.querySelector('.js-navigation');
+var navCont = document.querySelector('.js-nav');
+
+navTrigger.addEventListener('click', function(){
+  navCont.classList.toggle('is-active');
+
+  if(navCont.classList.contains('is-active')){
+      navCont.setAttribute("aria-hidden", "false")
+      navTrigger.setAttribute("aria-expanded", "true")
+    }
+    else{
+      navCont.setAttribute("aria-hidden", "true")
+      navTrigger.setAttribute("aria-expanded", "false")
+    }
+});
+
+if (window.matchMedia("(min-width: 1600px)").matches) {
+    navCont.setAttribute("aria-hidden", "false");
+}
+</script>
